@@ -1,0 +1,72 @@
+Equal Width Bin Edges (4 bins):
+[20.703125   27.24609375 33.7890625  40.33203125 46.875001  ]
+
+DataFrame head with Equal Width BMI Groups:
+孕妇BMI  孕妇 BMI	BMI_Group_Equal  BMI 分组相等
+0	28.125000	Equal_Bin_2  相等分组 2
+1	28.515625	Equal_Bin_2  相等分组 2
+2	28.515625	Equal_Bin_2  相等分组 2
+3	28.906250	Equal_Bin_2
+4	33.331832	Equal_Bin_2
+
+
+
+Calculating time to target Y concentration for Decision Tree Binning...
+Time to target DataFrame head (for Decision Tree Binning):
+孕妇代码	孕妇BMI  孕妇 BMI	达标时间
+0	A001	28.515625	20.142857
+1	A002	33.962434	13.857143
+2	A003	31.226562	13.000000
+3	A004	28.721359	11.000000
+4	A005	31.077778	12.285714
+
+
+Optimal BMI Split Points for Decision Tree Binning (3 splits):
+[28.525752067565918, 36.92152786254883, 38.16303253173828]
+
+DataFrame head with Decision Tree BMI Groups:
+孕妇BMI  孕妇 BMI	BMI_Group_DT  BMI 集团 DT
+0	28.125000	DT_Bin_1
+1	28.515625	DT_Bin_1
+2	28.515625	DT_Bin_1
+3	28.906250	DT_Bin_2
+4	33.331832	DT_Bin_2
+
+
+
+/tmp/ipython-input-2362922889.py:135: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(data=df_male_fetus, x='BMI_Group_Equal', y='Y染色体浓度', palette='viridis')
+
+/tmp/ipython-input-2362922889.py:145: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(data=df_male_fetus, x='BMI_Group_DT', y='Y染色体浓度', palette='viridis')
+
+
+Summary Statistics by Equal Width BMI Group:
+/tmp/ipython-input-2362922889.py:157: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  equal_group_stats = df_male_fetus.groupby('BMI_Group_Equal')[['孕妇BMI', '检测孕周_数值', 'Y染色体浓度']].agg(['mean', 'std', 'count'])
+孕妇BMI  孕妇 BMI	检测孕周_数值	Y染色体浓度
+mean  平均	std	count	mean	std	count  计数	mean  均值	std  标准差	count  计数
+BMI_Group_Equal  BMI 分组相等									
+Equal_Bin_1	23.782352	3.297343	8	17.160714	3.622442	8	0.045491	0.013670	8
+Equal_Bin_2  相等分组 2	31.007931	1.557253	792	16.512446	3.964001	792	0.080556	0.033457	792
+Equal_Bin_3	35.697204	1.537379	265	17.592453	4.395344	265	0.068717	0.030701	265
+Equal_Bin_4	42.833654	2.313280	17	19.630252	3.998424	17	0.067149	0.050709	17
+
+
+
+Summary Statistics by Decision Tree BMI Group:
+/tmp/ipython-input-2362922889.py:181: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  dt_group_stats = target_time_with_groups.groupby('BMI_Group_DT')[['孕妇BMI', '达标时间']].agg(['mean', 'std', 'count'])
+孕妇BMI  孕妇 BMI	达标时间
+mean	std	count	mean	std	count  计数
+BMI_Group_DT  BMI 集团 DT						
+DT_Bin_1	28.033164	1.804050	20	13.950000	2.777567	20
+DT_Bin_2	32.114308	2.091089	226	13.318584	2.531758	226
+DT_Bin_3	37.175359	0.309077	4	20.107143	6.092680	4
+DT_Bin_4	40.559998	2.067568	10	15.500000	3.487100	10
